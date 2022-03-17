@@ -43,17 +43,21 @@ service:
   port: 80
 
 ingress:
-  enabled: false
-  className: ""
-  annotations:
-    {}
+  enabled: enable
+  className: "nginx"
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
+    - host: rare-animals
       paths:
-        - path: /
-          pathType: ImplementationSpecific
+        - path: /mf-header
+          pathType: Prefix
+          backend:
+            service:
+              name: mf-header
+              port:
+                number: 80
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
