@@ -20,6 +20,7 @@ spec:
       {{- end }}
       labels:
         {{- include "mf-header.selectorLabels" . | nindent 8 }}
+        date: "{{ now | unixEpoch }}"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

@@ -45,13 +45,14 @@ service:
 ingress:
   enabled: enable
   className: "nginx"
-  annotations: {}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: rare-animals
       paths:
-        - path: /mf-header
+        - path: /mf-header(/|$)(.*)
           pathType: Prefix
           backend:
             service:
